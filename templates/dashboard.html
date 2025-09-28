@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - PlacementApp{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Dashboard Overview 👋</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>👨‍🎓 Students</h4>
+        <p>Manage student profiles and resumes.</p>
+        <a href="/students" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>🏢 Companies</h4>
+        <p>Track recruiters and company info.</p>
+        <a href="/companies" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>💼 Jobs</h4>
+        <p>View and post job opportunities.</p>
+        <a href="/jobs" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-1">
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>📑 Applications</h4>
+        <p>Track and manage applications.</p>
+        <a href="/applications" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>⚡ Skills</h4>
+        <p>Maintain a central skills database.</p>
+        <a href="/skills" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h4>🔗 Student Skills</h4>
+        <p>Assign skills to students easily.</p>
+        <a href="/student_skills" class="btn btn-sm btn-dark">Open</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

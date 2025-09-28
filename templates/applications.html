@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Applications - PlacementApp{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Manage <span class="highlight">Applications</span> 📑</h1>
+      <p class="text-muted">Track student applications, statuses, and job matches.</p>
+    </div>
+    <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#addAppModal">
+      + Add Application
+    </button>
+  </div>
+
+  <!-- Applications Table -->
+  <div class="card p-4">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Student</th>
+          <th>Job</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in applications %}
+        <tr>
+          <td>{{ a.ApplicationID }}</td>
+          <td>{{ a.ApplicationDate }}</td>
+          <td>{{ a.Status }}</td>
+          <td>{{ a.StudentName }}</td>
+          <td>{{ a.JobTitle }}</td>
+          <td>
+            <a href="/delete_application/{{ a.ApplicationID }}" class="btn btn-sm btn-outline-danger">🗑️ Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Application Modal -->
+<div class="modal fade" id="addAppModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="/add_application" method="POST">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">➕ Add New Application</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3"><label class="form-label">Date</label><input type="date" name="date" class="form-control" required></div>
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-select" required>
+              <option value="Pending">Pending</option>
+              <option value="Selected">Selected</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Student</label>
+            <select name="student" class="form-select" required>
+              {% for s in students %}
+              <option value="{{ s.StudentID }}">{{ s.Name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Job</label>
+            <select name="job" class="form-select" required>
+              {% for j in jobs %}
+              <option value="{{ j.JobID }}">{{ j.Title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-dark">Add Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

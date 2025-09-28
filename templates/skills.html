@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Skills - PlacementApp{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Manage <span class="highlight">Skills</span> ⚡</h1>
+      <p class="text-muted">Maintain an up-to-date database of skills for students.</p>
+    </div>
+    <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#addSkillModal">
+      + Add Skill
+    </button>
+  </div>
+
+  <!-- Skills Table -->
+  <div class="card p-4">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Skill</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sk in skills %}
+        <tr>
+          <td>{{ sk.SkillID }}</td>
+          <td>{{ sk.SkillName }}</td>
+          <td>
+            <a href="/delete_skill/{{ sk.SkillID }}" class="btn btn-sm btn-outline-danger">🗑️ Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Skill Modal -->
+<div class="modal fade" id="addSkillModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="/add_skill" method="POST">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">➕ Add New Skill</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3"><label class="form-label">Skill Name</label><input type="text" name="name" class="form-control" required></div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-dark">Add Skill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

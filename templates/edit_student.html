@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit Student{% endblock %}
+{% block content %}
+<h3 class="mb-3">Edit Student</h3>
+<div class="card">
+  <div class="card-body">
+    <form method="post" class="row g-3">
+      <div class="col-md-4"><input name="name" class="form-control" value="{{ student.Name }}" required></div>
+      <div class="col-md-4"><input name="email" class="form-control" value="{{ student.Email }}" required></div>
+      <div class="col-md-4"><input name="phone" class="form-control" value="{{ student.Phone }}" required></div>
+      <div class="col-md-3"><input name="dept" class="form-control" value="{{ student.Department }}"></div>
+      <div class="col-md-3"><input type="number" step="0.01" name="cgpa" class="form-control" value="{{ student.CGPA }}"></div>
+      <div class="col-md-6"><input name="resume" class="form-control" value="{{ student.ResumeURL }}"></div>
+      <div class="col-12"><button class="btn btn-primary btn-round">Update</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

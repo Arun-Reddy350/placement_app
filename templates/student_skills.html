@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Student Skills{% endblock %}
+{% block content %}
+<h3 class="mb-3">Assign Skills to Students</h3>
+
+<div class="card mb-4">
+  <div class="card-header">Assign Skill</div>
+  <div class="card-body">
+    <form method="post" action="/add_student_skill" class="row g-3">
+      <div class="col-md-6">
+        <select name="student" class="form-select" required>
+          <option disabled selected>Student</option>
+          {% for s in students %}<option value="{{ s.StudentID }}">{{ s.Name }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col-md-6">
+        <select name="skill" class="form-select" required>
+          <option disabled selected>Skill</option>
+          {% for sk in skills %}<option value="{{ sk.SkillID }}">{{ sk.SkillName }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col-12"><button class="btn btn-dark">Assign</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span>Assigned Skills</span>
+    <input type="text" id="studentSkillSearch" class="form-control w-25" placeholder="Search assignments...">
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered align-middle" id="studentSkillTable">
+      <thead><tr><th>Student</th><th>Skill</th><th>Actions</th></tr></thead>
+      <tbody>
+        {% for ss in student_skills %}
+        <tr>
+          <td>{{ ss.StudentName }}</td><td>{{ ss.SkillName }}</td>
+          <td><a href="/delete_student_skill/{{ ss.StudentID }}/{{ ss.SkillID }}" class="btn btn-sm btn-danger">Remove</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
