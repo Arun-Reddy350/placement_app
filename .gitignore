@@ -1,8 +1,16 @@
+﻿# Python cache
 __pycache__/
 *.pyc
-.env
+*.pyo
+*.pyd
+
+# Virtual environment
 venv/
+.env
 .env.*
-.idea/
+
+# IDE/editor junk
 .vscode/
+.idea/
 .DS_Store
+Thumbs.db
